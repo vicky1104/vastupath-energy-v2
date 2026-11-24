@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useImgFallback } from "./useImgFallback";
+import { asset } from "@/lib/asset";
 import { Mandala } from "./Icons";
 
 /**
@@ -14,7 +15,7 @@ export default function Logo({ light = false, height }: { light?: boolean; heigh
     <Link href="/" className={`logo${light ? " light" : ""}`} aria-label="Vastupath Energy, home">
       {!failed ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img ref={ref} src="/logo.png" alt="Vastupath Energy" style={height ? { height } : undefined} onError={onError} />
+        <img ref={ref} src={asset("/logo.png")} alt="Vastupath Energy" style={height ? { height } : undefined} onError={onError} />
       ) : (
         <>
           <span style={{ width: 44, height: 44, color: light ? "#e7cf96" : "#4a0e1f", display: "inline-block" }}>
@@ -39,5 +40,5 @@ export function LogoMark({ className }: { className?: string }) {
       </span>
     );
   // eslint-disable-next-line @next/next/no-img-element
-  return <img ref={ref} src="/logo.png" alt="Vastupath Energy" className={className} onError={onError} />;
+  return <img ref={ref} src={asset("/logo.png")} alt="Vastupath Energy" className={className} onError={onError} />;
 }

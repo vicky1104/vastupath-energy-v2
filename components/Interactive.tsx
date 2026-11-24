@@ -6,6 +6,7 @@ import { Building2, ChevronDown, MapPin, Quote, Star, X } from "lucide-react";
 import { FAQS, PROJECTS, TESTIMONIALS, WHATSAPP_URL } from "@/lib/site";
 import { Mandala, WhatsAppIcon } from "./Icons";
 import { useImgFallback } from "./useImgFallback";
+import { asset } from "@/lib/asset";
 import { Item, Stagger } from "./Motion";
 
 /* ---------- project photo with graceful fallback ---------- */
@@ -13,7 +14,7 @@ function Photo({ src, alt }: { src: string; alt: string }) {
   const { ref, failed, onError } = useImgFallback();
   if (failed) return <div className="ph-fallback"><Mandala /></div>;
   // eslint-disable-next-line @next/next/no-img-element
-  return <img ref={ref} src={src} alt={alt} loading="lazy" onError={onError} />;
+  return <img ref={ref} src={asset(src)} alt={alt} loading="lazy" onError={onError} />;
 }
 
 const altOf = (p: (typeof PROJECTS)[number]) =>

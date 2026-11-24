@@ -32,3 +32,7 @@ All text lives in `lib/site.ts`: services, remedies, steps, FAQs, projects, test
 - `components/HeroVisual.tsx`: compass ring with the 8 directions around the 3D scene
 - `components/Interactive.tsx`: project gallery with lightbox, testimonial marquee, FAQ accordion and the floating WhatsApp button
 - `components/Motion.tsx`: scroll-reveal helpers (they respect "reduce motion")
+
+## Hosting on GitHub Pages
+
+`.github/workflows/deploy-pages.yml` builds and deploys the site on every push to `main`. It sets `NEXT_PUBLIC_BASE_PATH` to `/<repo-name>`, so links and images work under `https://<user>.github.io/<repo-name>/`. On Vercel or a custom domain, leave that variable unset.
