@@ -1,64 +1,85 @@
 import type { Metadata } from "next";
-import { MapPin, FileText, Camera, HelpCircle, Phone, Home } from "lucide-react";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL, LOCATION, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
-import { PageHero, QuoteButton } from "@/components/Blocks";
-import { InstagramIcon, WhatsAppIcon } from "@/components/Icons";
-import { Item, Reveal, Stagger } from "@/components/Motion";
+import { ArrowUpRight, Phone, MapPin, Globe2, FileText, Camera, Compass, Home as HomeIcon } from "lucide-react";
+import { IMAGES, INSTAGRAM_HANDLE, INSTAGRAM_URL, LOCATION, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from "@/lib/site";
+import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
+import { Reveal } from "@/components/motion";
+import { PageHero } from "@/components/sections";
+import EnquiryForm from "@/components/EnquiryForm";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Message Vastupath Energy on WhatsApp for a Vastu consultation quote. +91 89800 39992 · Ahmedabad and online.",
+  description: "Message Vastupath Energy on WhatsApp for a Vastu consultation quote: +91 89800 39992. Site visits in Ahmedabad, online consultations worldwide.",
 };
 
 const SHARE = [
-  { icon: Home, t: "Type of space (home, office, plot)" },
+  { icon: HomeIcon, t: "Type of space: home, office, factory or plot" },
   { icon: MapPin, t: "Your city or area" },
   { icon: FileText, t: "Floor plan or plot layout" },
-  { icon: Camera, t: "A few photos" },
-  { icon: HelpCircle, t: "What help you need" },
+  { icon: Camera, t: "A few photos of the space" },
+  { icon: Compass, t: "Direction of the main entrance" },
 ];
 
 export default function ContactPage() {
   return (
     <>
-      <PageHero crumb="Contact" eyebrow="Contact" title="Let's talk on WhatsApp" lead="WhatsApp is the quickest way to reach us. Tell us about your space and we'll share a personalised quote." />
+      <PageHero
+        crumb="Contact"
+        label="Contact"
+        lines={["Let's talk", <em key="c">on WhatsApp</em>]}
+        lede="WhatsApp is the quickest way to reach us. Tell us about your space and we'll share a personalised quote."
+        image={IMAGES.bedroom}
+        imageAlt="A calm bedroom interior"
+      >
+        <div className="btn-row">
+          <a className="btn btn-gold" href={whatsappLink()} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /> Chat now</a>
+        </div>
+      </PageHero>
 
-      <section className="section">
-        <div className="container contact-grid">
-          <Reveal className="wa-card">
-            <h2><span className="wa"><WhatsAppIcon /></span> Message us on WhatsApp</h2>
-            <p className="num">{PHONE_DISPLAY}</p>
-            <p className="muted">To help us understand your space, please share:</p>
-            <Stagger className="share-list" gap={0.06}>
-              {SHARE.map(({ icon: I, t }) => (
-                <Item key={t} className="si"><I /> {t}</Item>
-              ))}
-            </Stagger>
-            <p className="muted" style={{ marginBottom: 24, display: "flex", gap: 8, alignItems: "center" }}><MapPin size={17} color="var(--saffron)" /> Site visits are available in Ahmedabad; everywhere else we consult online.</p>
-            <div className="btn-row">
-              <QuoteButton label="Start a WhatsApp chat" />
-              <a className="btn btn-ghost" href={`tel:${PHONE_TEL}`}><Phone /> Call {PHONE_DISPLAY}</a>
+      <section className="sec bg-paper">
+        <div className="wrap contact">
+          <Reveal><EnquiryForm /></Reveal>
+
+          <div>
+            <Reveal><span className="label">Direct contact</span></Reveal>
+            <div className="cards" style={{ marginTop: 24 }}>
+              <Reveal delay={0.05}>
+                <a className="ci" href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+                  <span className="ic"><WhatsAppIcon /></span>
+                  <span><small>WhatsApp</small><b>{PHONE_DISPLAY}</b></span>
+                  <ArrowUpRight className="go" />
+                </a>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <a className="ci" href={`tel:${PHONE_TEL}`}>
+                  <span className="ic"><Phone strokeWidth={1.4} /></span>
+                  <span><small>Call</small><b>{PHONE_DISPLAY}</b></span>
+                  <ArrowUpRight className="go" />
+                </a>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <a className="ci" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                  <span className="ic"><InstagramIcon /></span>
+                  <span><small>Instagram</small><b>{INSTAGRAM_HANDLE}</b></span>
+                  <ArrowUpRight className="go" />
+                </a>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <div className="ci">
+                  <span className="ic"><MapPin strokeWidth={1.4} /></span>
+                  <span><small>Site visits</small><b>{LOCATION}</b></span>
+                </div>
+              </Reveal>
+              <Reveal delay={0.25}>
+                <div className="ci">
+                  <span className="ic"><Globe2 strokeWidth={1.4} /></span>
+                  <span><small>Online consultations</small><b>India &amp; abroad</b></span>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
 
-          <div className="side-cards">
-            <Reveal delay={0.1}>
-              <a className="info" href={`tel:${PHONE_TEL}`}>
-                <span className="ic"><Phone /></span>
-                <span><small>Call</small><b>{PHONE_DISPLAY}</b></span>
-              </a>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <a className="info" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-                <span className="ic"><InstagramIcon /></span>
-                <span><small>Instagram</small><b>{INSTAGRAM_HANDLE}</b></span>
-              </a>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <div className="info dark-card">
-                <span className="ic"><MapPin /></span>
-                <span><small>Location</small><b>{LOCATION}</b></span>
-              </div>
+            <Reveal delay={0.3} className="share">
+              <h3>What to share with us</h3>
+              <ul>{SHARE.map(({ icon: I, t }) => <li key={t}><I strokeWidth={1.4} />{t}</li>)}</ul>
             </Reveal>
           </div>
         </div>

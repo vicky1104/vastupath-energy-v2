@@ -1,43 +1,50 @@
 import Link from "next/link";
-import { MapPin, Phone } from "lucide-react";
 import {
-  NAV, SERVICES, WHATSAPP_URL, PHONE_DISPLAY, PHONE_TEL, INSTAGRAM_HANDLE, INSTAGRAM_URL, LOCATION, TAGLINE,
+  NAV, SERVICES, PHONE_DISPLAY, PHONE_TEL, INSTAGRAM_HANDLE, INSTAGRAM_URL, LOCATION, TAGLINE, whatsappLink, BRAND,
 } from "@/lib/site";
-import { InstagramIcon, WhatsAppIcon } from "./Icons";
-import { LogoMark } from "./Logo";
+import { WhatsAppIcon } from "./icons";
+import { Logo } from "./Media";
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="container">
-        <div className="cols">
-          <div className="brand">
-            <span className="logo-box"><LogoMark /></span>
-            <p className="tag">{TAGLINE}</p>
-            <p>Vastu consultation for homes, offices and plots in Ahmedabad, and online for clients anywhere.</p>
+    <footer className="foot">
+      <div className="wrap">
+        <div className="foot-top">
+          <h2>Begin with a <em>conversation.</em><br />We&apos;ll take it from there.</h2>
+          <a className="btn btn-gold" href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon /> Message on WhatsApp
+          </a>
+        </div>
+
+        <div className="foot-cols">
+          <div className="about-col">
+            <span className="logo-chip"><Logo compact /></span>
+            <p>Practical Vastu guidance for homes, offices, factories and plots. Site visits in {LOCATION.split(",")[0]}, online consultations anywhere.</p>
+            <p className="serif-note" style={{ marginTop: 18 }}>{TAGLINE}</p>
           </div>
           <div>
-            <h3>Explore</h3>
+            <h4>Explore</h4>
             <ul>{NAV.map((n) => <li key={n.href}><Link href={n.href}>{n.label}</Link></li>)}</ul>
           </div>
           <div>
-            <h3>Services</h3>
+            <h4>Services</h4>
             <ul>{SERVICES.map((s) => <li key={s.slug}><Link href={`/services/#${s.slug}`}>{s.title}</Link></li>)}</ul>
           </div>
           <div>
-            <h3>Get in touch</h3>
+            <h4>Contact</h4>
             <ul>
-              <li><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /> WhatsApp {PHONE_DISPLAY}</a></li>
-              <li><a href={`tel:${PHONE_TEL}`}><Phone /> {PHONE_DISPLAY}</a></li>
-              <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon /> {INSTAGRAM_HANDLE}</a></li>
-              <li><span style={{ display: "inline-flex", gap: 10 }}><MapPin style={{ width: 17, height: 17, color: "var(--saffron-2)", flex: "none", marginTop: 3 }} /> {LOCATION}</span></li>
+              <li><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp {PHONE_DISPLAY}</a></li>
+              <li><a href={`tel:${PHONE_TEL}`}>Call {PHONE_DISPLAY}</a></li>
+              <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram {INSTAGRAM_HANDLE}</a></li>
+              <li>{LOCATION}</li>
+              <li>Online consultations worldwide</li>
             </ul>
           </div>
         </div>
-        <div className="big-word" aria-hidden="true">Vastupath</div>
-        <div className="bottom">
-          <span>© {new Date().getFullYear()} Vastupath Energy. All rights reserved.</span>
-          <span>{TAGLINE}</span>
+
+        <div className="foot-bottom">
+          <span>© {new Date().getFullYear()} {BRAND}. All rights reserved.</span>
+          <span>Photography: <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> contributors</span>
         </div>
       </div>
     </footer>

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Hammer, HandHeart, Eye, Sparkles } from "lucide-react";
-import { TAGLINE } from "@/lib/site";
-import { Cta, PageHero, SectionHead } from "@/components/Blocks";
-import { Mandala } from "@/components/Icons";
-import { Item, Reveal, Stagger } from "@/components/Motion";
+import Link from "next/link";
+import { ArrowRight, Hammer, HandHeart, Eye } from "lucide-react";
+import { FOUNDER, IMAGES, TAGLINE } from "@/lib/site";
+import { Img } from "@/components/Media";
+import { ArchReveal, Reveal, Seq, SeqItem } from "@/components/motion";
+import { CtaBanner, PageHero } from "@/components/sections";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Meet Harsh Shah, founder of Vastupath Energy, Ahmedabad. Practical, affordable Vastu for modern homes, offices and plots.",
+  description: "Meet Harsh Shah, founder of Vastupath Energy in Ahmedabad: practical, affordable Vastu for modern homes, offices, factories and plots.",
 };
 
 const VALUES = [
@@ -19,50 +20,72 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero crumb="About" eyebrow="About us" title="The path to a harmonious space" lead="Vastupath Energy helps families and businesses create spaces that feel calm, balanced and full of positive energy." />
+      <PageHero
+        crumb="About"
+        label="About us"
+        lines={["The path to a", <em key="a">harmonious</em>, "space"]}
+        lede="Vastupath Energy helps families and businesses create spaces that feel calm, balanced and full of positive energy."
+        image={IMAGES.pillars}
+        imageAlt="Carved palace pillar and window, Jodhpur"
+      />
 
-      <section className="section">
-        <div className="container founder">
-          <Reveal className="founder-art">
-            <Mandala className="mandala" />
-            <span className="mono">HS</span>
-            <span className="cap">Harsh Shah<small>Founder, Vastupath Energy</small></span>
-          </Reveal>
-          <div>
-            <Reveal><span className="eyebrow">Meet the founder</span></Reveal>
-            <Reveal delay={0.05}><h2>Harsh Shah</h2></Reveal>
-            <div className="copy">
-              <Reveal delay={0.1}>
-                <p>Harsh founded Vastupath Energy in Ahmedabad with a simple belief: the spaces we live and work in shape how we feel, how we think and how we grow.</p>
-              </Reveal>
-              <Reveal delay={0.15}>
-                <p>Vastu Shastra is India&apos;s traditional science of architecture, guiding direction, the five elements and the flow of energy. Harsh brings it to modern homes, offices and plots in a way that is practical and affordable.</p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <p>Whether you are building a new home or improving the one you have, Harsh visits your site in Ahmedabad or reviews it online, and suggests remedies that avoid structural changes.</p>
-              </Reveal>
-            </div>
-            <Reveal delay={0.25} className="pull"><Sparkles /> {TAGLINE}</Reveal>
+      <section className="sec bg-paper">
+        <div className="wrap story">
+          <div className="portrait">
+            <ArchReveal className="arch">
+              <Img src={IMAGES.courtyardAgra} alt="" />
+              <span className="mono" style={{ background: "rgba(42,51,32,.55)" }}>HS</span>
+            </ArchReveal>
+            <Reveal className="cap" delay={0.2}>
+              <b>{FOUNDER}</b>
+              <small>Founder, Vastupath Energy · Ahmedabad</small>
+            </Reveal>
+          </div>
+          <div className="copy">
+            <Reveal><span className="label">Meet the founder</span></Reveal>
+            <Reveal delay={0.05}><h2 style={{ color: "var(--olive)" }}>{FOUNDER}</h2></Reveal>
+            <Reveal delay={0.1}>
+              <p className="drop">
+                Harsh founded Vastupath Energy in Ahmedabad with a simple belief: the spaces we live and work in shape how we feel, how we think and how we grow.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <p>
+                Vastu Shastra is India&apos;s traditional science of architecture, guiding direction, the five elements and the flow of energy. Harsh brings it to modern homes, offices, factories and plots in a way that is practical and affordable.
+              </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p>
+                Whether you are building something new or improving the space you already have, Harsh visits your site in Ahmedabad or reviews it online, and suggests remedies that avoid structural changes.
+              </p>
+            </Reveal>
+            <Reveal delay={0.25}><blockquote>{TAGLINE}.</blockquote></Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section sand">
-        <div className="container">
-          <SectionHead center eyebrow="Our approach" title="What guides our work" />
-          <Stagger className="grid g3">
+      <section className="sec">
+        <div className="wrap">
+          <div className="sec-head split">
+            <div style={{ display: "grid", gap: 22 }}>
+              <Reveal><span className="label">Our approach</span></Reveal>
+              <Reveal delay={0.05}><h2 style={{ color: "var(--olive)" }}>What guides <em>our work</em></h2></Reveal>
+            </div>
+            <Reveal delay={0.1}><Link className="arrow-link" href="/services/">See how we can help <ArrowRight /></Link></Reveal>
+          </div>
+          <Seq className="values" gap={0.12}>
             {VALUES.map(({ icon: I, title, text }) => (
-              <Item key={title} className="card">
-                <span className="icon-tile"><I /></span>
+              <SeqItem key={title} className="val">
+                <I strokeWidth={1.1} />
                 <h3>{title}</h3>
                 <p>{text}</p>
-              </Item>
+              </SeqItem>
             ))}
-          </Stagger>
+          </Seq>
         </div>
       </section>
 
-      <Cta />
+      <CtaBanner />
     </>
   );
 }

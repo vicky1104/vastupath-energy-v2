@@ -1,14 +1,21 @@
-// All site content lives here so it can be edited without touching layout code.
+// ─────────────────────────────────────────────────────────────
+//  All website content lives in this file.
+//  Edit text, phone numbers, images or testimonials here; the pages update automatically.
+// ─────────────────────────────────────────────────────────────
+
+export const BRAND = "Vastupath Energy";
+export const TAGLINE = "Vastu today, harmony tomorrow";
+export const FOUNDER = "Harsh Shah";
 
 export const PHONE_DISPLAY = "+91 89800 39992";
 export const PHONE_TEL = "+918980039992";
-export const WHATSAPP_URL =
-  "https://wa.me/918980039992?text=" +
-  encodeURIComponent("Hi Vastupath Energy, I would like a Vastu consultation quote.");
+export const WHATSAPP_NUMBER = "918980039992";
+export const whatsappLink = (text = "Hi Vastupath Energy, I would like a Vastu consultation quote.") =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 export const INSTAGRAM_HANDLE = "@vastupathenergy";
 export const INSTAGRAM_URL = "https://www.instagram.com/vastupathenergy/";
-export const LOCATION = "Ahmedabad, Gujarat · Online worldwide";
-export const TAGLINE = "Vastu today, harmony tomorrow";
+export const LOCATION = "Ahmedabad, Gujarat";
+export const SERVICE_AREA = "Site visits in Ahmedabad · Online consultations worldwide";
 
 export const NAV = [
   { href: "/", label: "Home" },
@@ -18,80 +25,122 @@ export const NAV = [
   { href: "/contact/", label: "Contact" },
 ];
 
-export type ServiceKey = "home" | "office" | "plot" | "remedies" | "online";
+// Photography: free-licence images from Unsplash (unsplash.com/license).
+// Swap any URL for your own photo (put it in /public and use "/your-photo.jpg").
+const u = (id: string, w = 1600) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=72`;
+export const IMAGES = {
+  haveli: u("photo-1538460007089-2e7b2862248a"), // Mubarak Mahal, City Palace, Jaipur (Milind Ruparel)
+  courtyard: u("photo-1742303315242-0fc6298f7fff"), // Open courtyard (Akshat Jhingran)
+  courtyardAgra: u("photo-1665569623441-35f777561ec6"), // Courtyard, Agra (Pankaj Singh)
+  pillars: u("photo-1651148575176-b7c82ead7903", 1200), // Palace pillar and window, Jodhpur (Shamna Kadiri)
+  livingRoom: u("photo-1746517757473-7c88850e539b", 1200), // Modern living room, New Delhi (Spl Interiors)
+  bedroom: u("photo-1667375185276-13b00bf723bc", 1200), // Bedroom, Chennai (Dinesh Lunked)
+  office: u("photo-1747992021633-762a63985d01", 1200), // Modern office (Spl Interiors)
+  land: u("photo-1765260905999-06612390fb07", 1200), // Open land, Maharashtra (Satish Dharmavarapu)
+  industrial: u("photo-1764115424737-25aca6f47835", 1200), // Workshop, Mumbai (Zoshua Colah)
+  floorPlan: u("photo-1721244653652-268631ec049a", 1200), // Floor plan drawing (Amsterdam City Archives)
+};
 
-export const SERVICES: {
-  key: ServiceKey;
+export type Service = {
   slug: string;
   title: string;
-  short: string;
-  long: string;
+  kicker: string;
+  summary: string;
+  description: string;
   included: string[];
-}[] = [
+  image: string;
+};
+
+export const SERVICES: Service[] = [
   {
-    key: "home",
-    slug: "home-vastu",
-    title: "Home Vastu",
-    short: "Bring balance to your family's living spaces, from the entrance to the bedroom and kitchen.",
-    long: "Bring balance and positive energy to your family's living spaces, from the entrance to the bedroom and kitchen.",
+    slug: "residential-vastu",
+    title: "Residential Vastu",
+    kicker: "Flats · Bungalows · Villas",
+    summary: "Bring balance and positive energy to your family's home, from the entrance to the bedroom and kitchen.",
+    description:
+      "Your home shapes how your family feels every day. We review each room and suggest simple changes so the space supports health, harmony and peace of mind, whether you are moving into a new home or improving the one you live in.",
     included: [
       "Room-by-room review for flats, bungalows and villas",
       "Entrance, kitchen, bedroom and puja room placement",
-      "Guidance for new homes and existing homes",
-      "Clear, written suggestions you can act on",
+      "Guidance for new and existing homes",
+      "Clear written suggestions you can act on",
     ],
+    image: IMAGES.livingRoom,
   },
   {
-    key: "office",
-    slug: "office-vastu",
-    title: "Office Vastu",
-    short: "Set up your office, shop or factory so the space supports focus and business growth.",
-    long: "Set up your office, shop or factory so the space supports focus, growth and business success.",
+    slug: "commercial-office-vastu",
+    title: "Commercial & Office Vastu",
+    kicker: "Offices · Shops · Showrooms",
+    summary: "Arrange your office, shop or showroom so the space supports focus, growth and business success.",
+    description:
+      "The way a workplace is arranged affects decisions, teamwork and cash flow. We guide the placement of the owner's cabin, staff seating, cash counter and meeting areas so your business space works with you.",
     included: [
       "Seating and cabin placement for owners and staff",
       "Cash counter, reception and meeting room guidance",
-      "Offices, shops, showrooms and factories",
+      "Offices, shops and showrooms",
       "Layout advice for new premises and renovations",
     ],
+    image: IMAGES.office,
   },
   {
-    key: "plot",
     slug: "plot-vastu",
-    title: "Plot Vastu",
-    short: "Choose and plan your land the right way before construction, for owners and builders.",
-    long: "Choose and plan your land the right way before construction begins, for owners and builders alike.",
+    title: "Plot Selection & Plot Vastu",
+    kicker: "Before you buy or build",
+    summary: "Choose and plan your land the right way before construction begins, for owners and builders alike.",
+    description:
+      "The best time to apply Vastu is before the first brick is laid. We assess a plot's shape, slope, surrounding roads and orientation, then work with your architect so the plan starts on the right foundation.",
     included: [
       "Plot selection by shape, slope, roads and direction",
       "Planning guidance before a new build",
       "Floor plan review with your architect",
       "Support for builders and real estate projects",
     ],
+    image: IMAGES.land,
   },
   {
-    key: "remedies",
+    slug: "industrial-vastu",
+    title: "Industrial Vastu",
+    kicker: "Factories · Workshops · Warehouses",
+    summary: "Plan factories, workshops and warehouses so machinery, storage and offices sit in the right zones.",
+    description:
+      "Industrial units carry heavy machinery, raw material, finished goods and people. We guide where each of these belongs so the unit runs smoothly, for new plants and for existing ones.",
+    included: [
+      "Placement of machinery, storage and raw material",
+      "Owner's cabin, accounts and administration areas",
+      "Entrance, dispatch and loading zones",
+      "Guidance for new and existing units",
+    ],
+    image: IMAGES.industrial,
+  },
+  {
     slug: "remedies-without-demolition",
     title: "Remedies Without Demolition",
-    short: "Correct Vastu doshas with simple fixes, without breaking walls or rebuilding.",
-    long: "Correct Vastu doshas with simple, practical fixes. No breaking walls, no costly rebuilding.",
+    kicker: "No breaking walls",
+    summary: "Correct Vastu doshas with simple, practical fixes, with no breaking walls and no costly rebuilding.",
+    description:
+      "Most Vastu problems can be corrected without touching the structure. We use placement, colours, elements and carefully chosen remedies that suit your space and your budget.",
     included: [
       "Changes in placement, colours and elements",
       "Simple corrections for existing structures",
       "Remedies that suit your budget and space",
       "Follow-up support after changes",
     ],
+    image: IMAGES.pillars,
   },
   {
-    key: "online",
     slug: "online-consultation",
     title: "Online & Remote Consultation",
-    short: "Share your floor plan and get a full review over video call and WhatsApp.",
-    long: "Get a full consultation from anywhere, over video call and WhatsApp, based on your floor plan.",
+    kicker: "Across India and abroad",
+    summary: "Get a full consultation from anywhere, over video call and WhatsApp, based on your floor plan.",
+    description:
+      "Distance is no barrier. Share your floor plan, photos and compass directions, and receive a complete review over video call, followed by a written report with suggested remedies.",
     included: [
       "Available across India and abroad",
       "Share your floor plan, photos and compass directions",
       "Consultation over video call",
       "Written report with suggested remedies",
     ],
+    image: IMAGES.floorPlan,
   },
 ];
 
@@ -99,23 +148,35 @@ export const REMEDIES = [
   { key: "yantra", title: "Yantra", text: "Energised yantras placed in the right direction." },
   { key: "murti", title: "Murti", text: "Deity idols chosen and placed as per Vastu." },
   { key: "colour", title: "Colour codes", text: "Colours matched to each direction and room." },
-  { key: "gems", title: "Gems & crystals", text: "Stones used to correct doshas and attract positive energy." },
+  { key: "gems", title: "Gems", text: "Stones selected to correct doshas." },
+  { key: "crystals", title: "Crystals", text: "Crystals that attract and hold positive energy." },
   { key: "images", title: "Images", text: "Meaningful pictures and symbols that uplift each room." },
-  { key: "numerology", title: "Numerology", text: "Vastu aligned with your name, birth date and address numbers." },
-  { key: "astrology", title: "Astrology", text: "Guidance matched to your birth chart and planetary positions." },
-] as const;
+];
+
+export const ALIGNMENTS = [
+  {
+    key: "numerology",
+    title: "Vastu with Numerology",
+    text: "Your space aligned with your name, birth date and address numbers, with remedies matched to your personal numbers.",
+  },
+  {
+    key: "astrology",
+    title: "Vastu with Astrology",
+    text: "Guidance planned around your birth chart and planetary positions, so remedies suit you as well as your space.",
+  },
+];
 
 export const AUDIENCES = [
-  { key: "home", title: "Homeowners", text: "Buying, building or living in a home that feels right." },
-  { key: "biz", title: "Businesses", text: "Offices, shops and factories that support growth." },
-  { key: "builder", title: "Builders & developers", text: "Projects that buyers trust, with Vastu built in from the start." },
-] as const;
+  { title: "Homeowners", text: "Buying, building or living in a home that feels right.", image: IMAGES.bedroom },
+  { title: "Businesses", text: "Offices, shops and factories that support growth.", image: IMAGES.office },
+  { title: "Builders & developers", text: "Projects that buyers trust, with Vastu built in from the start.", image: IMAGES.land },
+];
 
 export const STEPS = [
-  { title: "Message on WhatsApp", text: "Tell us about your home, office or plot and what help you need." },
+  { title: "Message on WhatsApp", text: "Tell us about your home, office, factory or plot, and what help you need." },
   { title: "Share your details", text: "Send your floor plan or plot layout, a few photos and your address or city." },
-  { title: "Site visit or video call", text: "Site visits in person in Ahmedabad, or an online review for everywhere else." },
-  { title: "Remedies & guidance", text: "Receive clear, practical suggestions, with no demolition needed." },
+  { title: "Property analysis", text: "A site visit in person in Ahmedabad, or a detailed online review over video call for everywhere else." },
+  { title: "Recommendations & remedies", text: "Receive clear, practical suggestions and remedies, with no demolition needed." },
 ];
 
 export const FAQS = [
@@ -137,31 +198,32 @@ export const FAQS = [
   },
 ];
 
+// Project photos: put the files in /public/images/projects/ with these names.
 export const PROJECTS = [
   {
     title: "Divine Motors Pvt. Ltd.",
     place: "Silvassa",
     type: "Commercial Vastu",
-    detail: "Authorised Hyundai dealer · Vastu visit with Mr. Piyush Desai (Managing Director)",
+    detail: "Authorised Hyundai dealer. Vastu visit with Mr. Piyush Desai, Managing Director.",
     image: "/images/projects/divine-motors.jpg",
   },
   {
     title: "Shree Ambica Auto Sales & Service",
     place: "",
     type: "Commercial Vastu",
-    detail: "Tata Truck dealer · Vastu discussion with Director Mr. Nitesh Modi",
+    detail: "Tata Truck dealer. Vastu discussion with Director Mr. Nitesh Modi.",
     image: "/images/projects/shree-ambica-auto.jpg",
   },
   {
     title: "Breadko",
     place: "Ahmedabad",
     type: "Commercial Vastu",
-    detail: "Bakery food manufacturer",
+    detail: "Bakery food manufacturer.",
     image: "/images/projects/breadko.jpg",
   },
 ];
 
-// Paste the exact review wording from your previous site into `text` if it differs.
+// Client reviews: replace `text` with the exact wording from each client if it differs.
 export const TESTIMONIALS = [
   {
     name: "Shyamal",
@@ -193,4 +255,14 @@ export const TESTIMONIALS = [
     tag: "Home & Office Vastu",
     text: "Received guidance and remedies for both our home and office, and noticed positive changes within 20 days.",
   },
+];
+
+export const SPACE_TYPES = [
+  "Flat / Apartment",
+  "Bungalow / Villa",
+  "Office",
+  "Shop / Showroom",
+  "Factory / Warehouse",
+  "Plot / Land",
+  "Other",
 ];

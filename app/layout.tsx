@@ -1,31 +1,33 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/marcellus/400.css";
-import "@fontsource-variable/manrope/index.css";
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource/cormorant-garamond/500-italic.css";
+import "@fontsource-variable/jost/index.css";
 import "./globals.css";
 import { asset } from "@/lib/asset";
-import Header from "@/components/Header";
+import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { WhatsAppFab } from "@/components/Interactive";
+import WaPill from "@/components/WaPill";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vastupath-energy.vercel.app"),
-  title: { default: "Vastupath Energy | Vastu Consultation in Ahmedabad & Online", template: "%s | Vastupath Energy" },
+  metadataBase: new URL("https://vicky1104.github.io/vastupath-energy-v2/"),
+  title: { default: "Vastupath Energy | Vastu Consultant in Ahmedabad & Online", template: "%s | Vastupath Energy" },
   description:
-    "Practical Vastu guidance for homes, offices and plots, with remedies that need no demolition. Site visits in Ahmedabad, online consultations anywhere. Message on WhatsApp for a quote.",
+    "Practical Vastu consultation for homes, offices, factories and plots, with remedies that need no demolition. Site visits in Ahmedabad and online consultations worldwide. Get a quote on WhatsApp.",
   icons: { icon: asset("/logo.png") },
-  openGraph: { title: "Vastupath Energy", description: "Vastu today, harmony tomorrow.", images: ["/logo.png"] },
+  openGraph: { title: "Vastupath Energy", description: "Vastu today, harmony tomorrow.", type: "website" },
 };
 
-export const viewport: Viewport = { themeColor: "#536b4f" };
+export const viewport: Viewport = { themeColor: "#3d4a2e" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Header />
+        <Nav />
         <main>{children}</main>
         <Footer />
-        <WhatsAppFab />
+        <WaPill />
       </body>
     </html>
   );
