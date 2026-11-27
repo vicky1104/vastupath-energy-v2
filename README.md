@@ -26,7 +26,7 @@ All text, contact details, services, remedies, FAQs, projects, testimonials and 
 - `components/EnquiryForm.tsx`: contact form that composes a WhatsApp message (no server needed)
 - `components/motion.tsx`: scroll reveals, masked headline lines, arch reveals, parallax (all respect "reduce motion")
 
-The previous design is kept in git under the tag `v2-reference`.
+The previous design is kept on the `v2-reference` branch.
 
 ## Hosting on GitHub Pages
 `.github/workflows/deploy-pages.yml` builds and deploys the site on every push to `main`. It sets `NEXT_PUBLIC_BASE_PATH` to `/<repo-name>`, so links and images work under `https://<user>.github.io/<repo-name>/`. On Vercel or a custom domain, leave that variable unset.
