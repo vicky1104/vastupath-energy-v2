@@ -4,8 +4,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const GOLD = new THREE.Color("#e7cf96");
-const SAFFRON = new THREE.Color("#f5a742");
+const GOLD = new THREE.Color("#d9c9a3");
+const SAFFRON = new THREE.Color("#c9a56e");
 
 /** 9x9 Vastu Purusha grid with a glowing Brahmasthan (centre). */
 function PurushaGrid() {
@@ -22,7 +22,7 @@ function PurushaGrid() {
   }, []);
   const glow = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
-    if (glow.current) (glow.current.material as THREE.MeshBasicMaterial).opacity = 0.35 + Math.sin(clock.elapsedTime * 1.6) * 0.15;
+    if (glow.current) (glow.current.material as THREE.MeshBasicMaterial).opacity = 0.2 + Math.sin(clock.elapsedTime * 1.2) * 0.08;
   });
   return (
     <group>
@@ -36,7 +36,7 @@ function PurushaGrid() {
       </mesh>
       <mesh>
         <circleGeometry args={[0.22, 48]} />
-        <meshBasicMaterial color={"#fff1d6"} />
+        <meshBasicMaterial color={"#f3ead9"} />
       </mesh>
     </group>
   );
@@ -63,7 +63,7 @@ function Lotus() {
         <group key={i} rotation={[0, 0, (i * Math.PI) / 4]}>
           <mesh position={[0, 1.95, 0.02]}>
             <shapeGeometry args={[shape]} />
-            <meshBasicMaterial color={SAFFRON} transparent opacity={0.16} side={THREE.DoubleSide} depthWrite={false} blending={THREE.AdditiveBlending} />
+            <meshBasicMaterial color={SAFFRON} transparent opacity={0.08} side={THREE.DoubleSide} depthWrite={false} blending={THREE.AdditiveBlending} />
           </mesh>
           <primitive object={outline.clone()} position={[0, 1.95, 0.03]} />
         </group>
@@ -141,7 +141,7 @@ function Dust({ count = 700 }) {
   useFrame((_, d) => { if (ref.current) ref.current.rotation.z += d * 0.025; });
   return (
     <points ref={ref} geometry={geo}>
-      <pointsMaterial size={0.035} color={"#ffd9a0"} transparent opacity={0.85} depthWrite={false} blending={THREE.AdditiveBlending} sizeAttenuation />
+      <pointsMaterial size={0.035} color={"#e6d6b4"} transparent opacity={0.55} depthWrite={false} blending={THREE.AdditiveBlending} sizeAttenuation />
     </points>
   );
 }

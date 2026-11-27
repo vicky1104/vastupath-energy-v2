@@ -18,7 +18,7 @@ export default function Logo({ light = false, height }: { light?: boolean; heigh
         <img ref={ref} src={asset("/logo.png")} alt="Vastupath Energy" style={height ? { height } : undefined} onError={onError} />
       ) : (
         <>
-          <span style={{ width: 44, height: 44, color: light ? "#e7cf96" : "#4a0e1f", display: "inline-block" }}>
+          <span style={{ width: 44, height: 44, color: light ? "#d9c9a3" : "#2e2925", display: "inline-block" }}>
             <Mandala spin={false} />
           </span>
           <span className="word">
@@ -35,7 +35,7 @@ export function LogoMark({ className }: { className?: string }) {
   const { ref, failed, onError } = useImgFallback();
   if (failed)
     return (
-      <span className={`fallback ${className ?? ""}`} style={{ color: "#4a0e1f", aspectRatio: "1", display: "grid" }}>
+      <span className={`fallback ${className ?? ""}`} style={{ color: "#2e2925", aspectRatio: "1", display: "grid" }}>
         <Mandala spin={false} />
       </span>
     );

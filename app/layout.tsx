@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Vastupath Energy", description: "Vastu today, harmony tomorrow.", images: ["/logo.png"] },
 };
 
-export const viewport: Viewport = { themeColor: "#4a0e1f" };
+export const viewport: Viewport = { themeColor: "#2e2925" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
