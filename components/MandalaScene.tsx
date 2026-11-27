@@ -4,8 +4,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const GOLD = new THREE.Color("#d9c9a3");
-const SAFFRON = new THREE.Color("#c9a56e");
+const GOLD = new THREE.Color("#e9d5a6");
+const SAFFRON = new THREE.Color("#e2a47f");
 
 /** 9x9 Vastu Purusha grid with a glowing Brahmasthan (centre). */
 function PurushaGrid() {
@@ -36,7 +36,7 @@ function PurushaGrid() {
       </mesh>
       <mesh>
         <circleGeometry args={[0.22, 48]} />
-        <meshBasicMaterial color={"#f3ead9"} />
+        <meshBasicMaterial color={"#fbf3df"} />
       </mesh>
     </group>
   );
@@ -141,7 +141,7 @@ function Dust({ count = 700 }) {
   useFrame((_, d) => { if (ref.current) ref.current.rotation.z += d * 0.025; });
   return (
     <points ref={ref} geometry={geo}>
-      <pointsMaterial size={0.035} color={"#e6d6b4"} transparent opacity={0.55} depthWrite={false} blending={THREE.AdditiveBlending} sizeAttenuation />
+      <pointsMaterial size={0.035} color={"#f0ddb0"} transparent opacity={0.55} depthWrite={false} blending={THREE.AdditiveBlending} sizeAttenuation />
     </points>
   );
 }

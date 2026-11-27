@@ -34,13 +34,13 @@ export default function HeroVisual() {
         {DIRS.map((d) => {
           const r = 183, rad = ((d.a - 90) * Math.PI) / 180;
           return (
-            <text key={d.l} x={200 + Math.cos(rad) * r} y={200 + Math.sin(rad) * r + 4} textAnchor="middle" fontSize={d.l.length > 1 ? 9 : 12} fontWeight="700" fill={d.l === "NE" ? "#a8814a" : "currentColor"} fontFamily="Manrope Variable, sans-serif">
+            <text key={d.l} x={200 + Math.cos(rad) * r} y={200 + Math.sin(rad) * r + 4} textAnchor="middle" fontSize={d.l.length > 1 ? 9 : 12} fontWeight="700" fill={d.l === "NE" ? "#c77d55" : "currentColor"} fontFamily="Manrope Variable, sans-serif">
               {d.l}
             </text>
           );
         })}
       </svg>
-      <div className="canvas-wrap" style={{ color: "#d9c9a3" }}>
+      <div className="canvas-wrap" style={{ color: "#e9d5a6" }}>
         <MandalaScene />
       </div>
       <motion.div className="badge b1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.1 }}>
